@@ -1,0 +1,5 @@
+.vscode/
+dbt_internal_packages/
+logs/
+target/
+.history/

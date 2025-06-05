@@ -1,0 +1,30 @@
+name: property_management
+version: '0.0.1'
+profile: default
+dbt-cloud:
+    project-id: 70437463658454
+
+models:
+  +materialized: table
+
+# seed-paths: ["seeds"]
+# model-paths: ["models"]
+# macro-paths: ["macros"]
+
+# target-path: "target"
+# clean-targets:
+#   - "target"
+#   - "dbt_packages"
+
+# seeds:
+#   # Builds seeds into '<your_schema_name>_raw'
+#   jaffle_shop:
+#     +schema: raw
+
+# models:
+#   jaffle_shop:
+#     # Materialize staging models as views, and marts as tables
+#     staging:
+#       +materialized: view
+#     marts:
+#       +materialized: table
