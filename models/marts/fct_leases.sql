@@ -10,16 +10,13 @@ units as (
 final as (
   select
     lease_id,
-    unit_id,
     property_id,
-    rental_application_id,
-    leases.created_at
-
+    unit_id,
+    rental_application_id
   from
     leases
       inner join rental_applications using (rental_application_id)
       inner join units using (unit_id)
-  order by created_at
 )
 
 
