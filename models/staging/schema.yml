@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: stg_leases
+    columns:
+      - name: lease_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_properties
+    columns:
+      - name: property_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_rental_applications
+    columns:
+      - name: rental_application_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_units
+    columns:
+      - name: unit_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['rented', 'occupied', 'vacant', 'construction']
+      - name: property_id
+        tests:
+          - relationships:
+              to: ref('stg_properties')
+              field: property_id
