@@ -1,6 +1,7 @@
 version: 2
 sources:
   - name: property_management
+    description: Raw property management system data containing information about properties, rental units, lease agreements, and rental applications
     database: raw
     schema: property_management
     config:
@@ -15,5 +16,53 @@ sources:
     tables:
       - name: properties
       - name: leases
+        description: Lease agreement records tracking rental contracts between tenants and property owners
+        columns:
+          - name: id
+            description: Primary key for lease records
+          - name: completed
+            description: Boolean indicating if the lease agreement process is complete
+          - name: created_at
+            description: Timestamp when the lease record was first created
+          - name: end_date
+            description: Date when the lease term expires
+          - name: rental_application_id
+            description: Foreign key linking to the associated rental application
+          - name: start_date
+            description: Date when the lease term begins
+          - name: unit_id
+            description: Foreign key linking to the rental unit being leased
+          - name: uploaded_at
+            description: Timestamp when the lease data was uploaded to the system
       - name: units
+        description: Individual rental units within properties, including details about occupancy, specifications, and location
+        columns:
+          - name: id
+            description: Primary key for unit records
+          - name: property_id
+            description: Foreign key linking to the parent property
+          - name: address_1
+            description: Primary street address of the unit
+          - name: address_2
+            description: Secondary address information (apt number, suite, etc.)
+          - name: city
+            description: City where the unit is located
+          - name: state
+            description: State where the unit is located
+          - name: zip_code
+            description: ZIP/postal code for the unit location
+          - name: bathrooms
+            description: Number of bathrooms in the unit
+          - name: bedrooms
+            description: Number of bedrooms in the unit
+          - name: square_feet
+            description: Total livable square footage of the unit
+          - name: rent
+            description: Monthly rental amount for the unit
+          - name: status
+            description: Current occupancy status (vacant, rented, occupied, or construction)
+          - name: created_at
+            description: Timestamp when the unit record was created
+          - name: uploaded_at
+            description: Timestamp when the unit data was uploaded to the system
       - name: rental_applications

@@ -1,37 +1,108 @@
 version: 2
 models:
   - name: stg_leases
+    description: Cleaned lease agreements data with standardized column names
     columns:
       - name: lease_id
+        description: Unique identifier for each lease agreement
         tests:
           - unique
           - not_null
+      - name: completed
+        description: Whether the lease agreement has been completed
+      - name: created_at
+        description: Timestamp when the lease record was created
+      - name: end_date
+        description: End date of the lease agreement
+      - name: rental_application_id
+        description: Reference to the associated rental application
+      - name: start_date
+        description: Start date of the lease agreement
+      - name: unit_id
+        description: Reference to the leased unit
+      - name: uploaded_at
+        description: Timestamp when the lease document was uploaded
+
   - name: stg_properties
+    description: Cleaned property data with standardized column names
     columns:
       - name: property_id
+        description: Unique identifier for each property
         tests:
           - unique
           - not_null
+      - name: address
+        description: Street address of the property
+      - name: city
+        description: City where the property is located
+      - name: created_at
+        description: Timestamp when the property record was created
+      - name: name
+        description: Name or title of the property
+      - name: state
+        description: State where the property is located
+      - name: property_type
+        description: Type/category of the property
+      - name: year_built
+        description: Year the property was constructed
+      - name: zip_code
+        description: ZIP code of the property location
 
   - name: stg_rental_applications
+    description: Cleaned rental application data with standardized column names
     columns:
       - name: rental_application_id
+        description: Unique identifier for each rental application
         tests:
           - unique
           - not_null
+      - name: contact_info_id
+        description: Reference to the applicant's contact information
+      - name: status
+        description: Current status of the rental application
+      - name: created_at
+        description: Timestamp when the application was submitted
+      - name: deleted_at
+        description: Timestamp when the application was deleted (if applicable)
 
   - name: stg_units
+    description: Cleaned rental unit data with standardized column names
     columns:
       - name: unit_id
+        description: Unique identifier for each rental unit
         tests:
           - unique
           - not_null
-      - name: status
-        tests:
-          - accepted_values:
-              values: ['rented', 'occupied', 'vacant', 'construction']
       - name: property_id
+        description: Reference to the property containing this unit
         tests:
           - relationships:
               to: ref('stg_properties')
               field: property_id
+      - name: address_1
+        description: Primary address line for the unit
+      - name: address_2
+        description: Secondary address line for the unit (apartment number, etc.)
+      - name: city
+        description: City where the unit is located
+      - name: state
+        description: State where the unit is located
+      - name: zip_code
+        description: ZIP code of the unit location
+      - name: bathrooms
+        description: Number of bathrooms in the unit
+      - name: bedrooms
+        description: Number of bedrooms in the unit
+      - name: square_feet
+        description: Total square footage of the unit
+      - name: rent
+        description: Monthly rent amount for the unit
+      - name: status
+        description: '{{ doc("unit_status") }}'
+        tests:
+          - accepted_values:
+              values: ['rented', 'occupied', 'vacant', 'construction']
+      - name: created_at
+        description: Timestamp when the unit record was created
+      - name: uploaded_at
+        description: Timestamp when the unit data was uploaded
