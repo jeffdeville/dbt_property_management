@@ -10,8 +10,8 @@ property_units as (
   select
     property_id,
     count(unit_id) as num_units,
-    sum(square_feet) as total_square_feet,
-    sum(rent) as total_potential_revenue
+    sum(square_feet) as total_square_feet
+    -- sum(rent) as total_potential_revenue
   from
     properties
       inner join units using (property_id)
