@@ -22,8 +22,8 @@ final as (
     property_id,
     name,
     num_units,
-    total_square_feet,
-    total_potential_revenue
+    total_square_feet
+    -- total_potential_revenue
   from
     properties
       inner join property_units using (property_id)
