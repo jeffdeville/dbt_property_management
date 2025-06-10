@@ -10,7 +10,7 @@ units as (
 final as (
   select
     lease_id,
-    -- property_id,
+    property_id,
     unit_id,
     rental_application_id
   from
