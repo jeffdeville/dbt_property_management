@@ -11,7 +11,7 @@ property_units as (
     property_id,
     count(unit_id) as num_units,
     sum(square_feet) as total_square_feet
-    -- sum(rent) as total_potential_revenue
+    sum(rent) as total_potential_revenue
   from
     properties
       inner join units using (property_id)
@@ -23,7 +23,7 @@ final as (
     name,
     num_units,
     total_square_feet
-    -- total_potential_revenue
+    total_potential_revenue
   from
     properties
       inner join property_units using (property_id)
